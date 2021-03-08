@@ -13,21 +13,24 @@ class ProductsGrid extends StatelessWidget {
     final productsData = Provider.of<ProductsProvider>(context);
     final products =
         showFavorites ? productsData.favoriteProducts : productsData.products;
-    return GridView.builder(
-        itemCount: products.length,
-        padding: const EdgeInsets.all(10.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of items in row
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 10.0, // Space between columns
-          mainAxisSpacing: 15, // Space between rows
-        ),
-        itemBuilder: (context, index) {
-          // Listen to specific object
-          return ChangeNotifierProvider.value(
-            value: products[index],
-            child: ProductGridItem(index),
-          );
-        });
+    return Container(
+      width: 1000,
+      child: GridView.builder(
+          itemCount: products.length,
+          padding: const EdgeInsets.all(10.0),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, // Number of items in row
+            childAspectRatio: 0.75,
+            crossAxisSpacing: 10.0, // Space between columns
+            mainAxisSpacing: 15, // Space between rows
+          ),
+          itemBuilder: (context, index) {
+            // Listen to specific object
+            return ChangeNotifierProvider.value(
+              value: products[index],
+              child: ProductGridItem(index),
+            );
+          })
+    );
   }
 }

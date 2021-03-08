@@ -8,7 +8,7 @@ import '../../utils/view/constant_routs.dart';
 import '../../view/screens/products_overview_screen.dart';
 import '../../view/screens/un_defined_screen.dart';
 
-class Router {
+class Router2 {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case productsOverviewRoute:

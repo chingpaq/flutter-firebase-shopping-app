@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: Router.generateRoute,
+        onGenerateRoute: Router2.generateRoute,
         initialRoute: productsOverviewRoute,
         title: ThemeManager.appName,
         theme: ThemeManager.lightTheme,
