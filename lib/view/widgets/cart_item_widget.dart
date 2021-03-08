@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CartItemWidget extends StatelessWidget {
-  final String itemId;
-  final String productId;
-  final double price;
-  final int quantity;
-  final String title;
-  final String imageUrl;
+  final String? itemId;
+  final String? productId;
+  final double? price;
+  final int? quantity;
+  final String? title;
+  final String? imageUrl;
 
   CartItemWidget({
     this.itemId,
@@ -78,13 +78,13 @@ class CartItemWidget extends StatelessWidget {
                 width: 75.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(imageUrl),
+                    image: NetworkImage(imageUrl!),
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
-              title: Text(title),
-              subtitle: Text('Total: \$${(price * quantity)}'),
+              title: Text(title!),
+              subtitle: Text('Total: \$${(price! * quantity!)}'),
               trailing: Text('$quantity x'),
             ),
             Divider(

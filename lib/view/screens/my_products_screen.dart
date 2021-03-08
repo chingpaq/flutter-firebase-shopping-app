@@ -57,9 +57,9 @@ class MyProductsScreen extends StatelessWidget {
   // Draw productItem
   Widget productItem(ProductModelProvider product, BuildContext context) {
     return ListTile(
-      title: Text(product.title, style: Theme.of(context).textTheme.title),
+      title: Text(product.title!, style: Theme.of(context).textTheme.title),
       subtitle: Text(
-        product.description,
+        product.description!,
         maxLines: 1,
         style: TextStyle(
           fontSize: 15,
@@ -67,7 +67,7 @@ class MyProductsScreen extends StatelessWidget {
         ),
       ),
       leading: CircleAvatar(
-        backgroundImage: NetworkImage(product.imageUrl),
+        backgroundImage: NetworkImage(product.imageUrl!),
         radius: 24,
       ),
       trailing: Text(

@@ -14,10 +14,10 @@ class Router2 {
       case productsOverviewRoute:
         return MaterialPageRoute(builder: (_) => ProductsOverviewScreen());
       case productDetailsRoute:
-        ProductDetailsArgs args = settings.arguments;
+        ProductDetailsArgs? args = settings.arguments as ProductDetailsArgs?;
         return MaterialPageRoute(
             builder: (_) => ProductDetailsScreen(
-                  productId: args.id,
+                  productId: args!.id,
                   index: args.index,
                 ));
       case cartScreenRoute:

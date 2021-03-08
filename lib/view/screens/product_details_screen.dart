@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  final String productId;
-  final int index;
+  final String? productId;
+  final int? index;
 
   ProductDetailsScreen({this.productId, this.index});
   @override
@@ -31,7 +31,7 @@ class ProductDetailsScreen extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
-          title: Text(loadedProduct.title,
+          title: Text(loadedProduct.title!,
               style: TextStyle(
                   fontFamily: 'Varela',
                   fontSize: 20.0,

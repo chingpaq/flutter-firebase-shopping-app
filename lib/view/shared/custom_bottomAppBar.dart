@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class BottomAppBarItem {
   BottomAppBarItem({this.iconData, this.text});
-  IconData iconData;
-  String text;
+  IconData? iconData;
+  String? text;
 }
 
 class CustomBottomAppBar extends StatefulWidget {
@@ -18,27 +18,27 @@ class CustomBottomAppBar extends StatefulWidget {
     this.notchedShape,
     this.onTabSelected,
   }) {
-    assert(this.items.length == 2 || this.items.length == 4);
+    assert(this.items!.length == 2 || this.items!.length == 4);
   }
-  final List<BottomAppBarItem> items;
-  final String centerItemText;
+  final List<BottomAppBarItem>? items;
+  final String? centerItemText;
   final double height;
   final double iconSize;
-  final Color backgroundColor;
-  final Color color;
-  final Color selectedColor;
-  final NotchedShape notchedShape;
-  final ValueChanged<int> onTabSelected;
+  final Color? backgroundColor;
+  final Color? color;
+  final Color? selectedColor;
+  final NotchedShape? notchedShape;
+  final ValueChanged<int?>? onTabSelected;
 
   @override
   State<StatefulWidget> createState() => CustomBottomAppBarState();
 }
 
 class CustomBottomAppBarState extends State<CustomBottomAppBar> {
-  int _selectedIndex = 3;
+  int? _selectedIndex = 3;
 
-  _updateIndex(int index) {
-    widget.onTabSelected(index);
+  _updateIndex(int? index) {
+    widget.onTabSelected!(index);
     setState(() {
       _selectedIndex = index;
     });
@@ -46,9 +46,9 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> items = List.generate(widget.items.length, (int index) {
+    List<Widget> items = List.generate(widget.items!.length, (int index) {
       return _buildTabItem(
-        item: widget.items[index],
+        item: widget.items![index],
         index: index,
         onPressed: _updateIndex,
       );
@@ -68,25 +68,25 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
   }
 
   Widget _buildTabItem({
-    BottomAppBarItem item,
-    int index,
-    ValueChanged<int> onPressed,
+    required BottomAppBarItem item,
+    int? index,
+    ValueChanged<int?>? onPressed,
   }) {
-    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    Color? color = _selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: SizedBox(
         height: widget.height,
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
-            onTap: () => onPressed(index),
+            onTap: () => onPressed!(index),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(item.iconData, color: color, size: widget.iconSize),
                 Text(
-                  item.text,
+                  item.text!,
                   style: TextStyle(color: color, fontSize: 12),
                 )
               ],

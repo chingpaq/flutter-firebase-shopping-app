@@ -1,6 +1,6 @@
 class ProductDetailsArgs {
-  String id;
-  int index;
+  String? id;
+  int? index;
 
   ProductDetailsArgs({
     this.id,

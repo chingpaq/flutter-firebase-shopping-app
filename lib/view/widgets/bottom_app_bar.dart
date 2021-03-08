@@ -25,11 +25,11 @@ class _SharedBottomAppBarState extends State<SharedBottomAppBar> {
   ];
   List<String> titles = ['More', 'My Orders', 'Favourite', 'Home'];
 
-  void _selectedTab(int index) {
+  void _selectedTab(int? index) {
     setState(() {
       print(index);
-      _lastSelected = pages[index];
-      _title = titles[index];
+      _lastSelected = pages[index?? 0];
+      _title = titles[index ?? 0];
     });
   }
 
@@ -41,7 +41,9 @@ class _SharedBottomAppBarState extends State<SharedBottomAppBar> {
         color: Colors.grey,
         selectedColor: Theme.of(context).accentColor,
         notchedShape: CircularNotchedRectangle(),
-        onTabSelected: _selectedTab,
+        onTabSelected: (int? value){
+          _selectedTab(value);
+        },
         items: [
           BottomAppBarItem(iconData: Icons.more_horiz, text: 'More'),
           BottomAppBarItem(iconData: Icons.card_travel, text: 'My Orders'),

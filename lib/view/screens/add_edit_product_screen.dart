@@ -19,9 +19,9 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
   final _imageUrlController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String title, description, imageUrl;
-  double price;
-  ProductModelProvider _product;
+  String? title, description, imageUrl;
+  double? price;
+  late ProductModelProvider _product;
   var _isLoaded = false;
 
   @override
@@ -47,11 +47,11 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
   }
 
   void _submitForm() {
-    final isValid = _formKey.currentState.validate();
+    final isValid = _formKey.currentState!.validate();
     if (!isValid) {
       return;
     }
-    _formKey.currentState.save();
+    _formKey.currentState!.save();
     setState(() {
       _isLoaded = true;
     });
@@ -95,7 +95,7 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
       _product = Provider.of<ProductsProvider>(context, listen: false)
           .findProductById(widget.productId);
       // Because i user controller for image TEXTFIELDFORM
-      _imageUrlController.text = _product.imageUrl;
+      _imageUrlController.text = _product.imageUrl!;
     }
     return Scaffold(
       appBar: AppBar(
@@ -147,7 +147,7 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
                           title = value;
                         },
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value!.isEmpty) {
                             return 'Please enter title';
                           }
                           return null; // null mean no error
@@ -189,7 +189,7 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
                               .requestFocus(_descriptionFocusNode);
                         },
                         onSaved: (value) {
-                          price = double.parse(value);
+                          price = double.parse(value!);
                         },
                       ),
                       UISpacingHelper.verticalSpaceSmall,

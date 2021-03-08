@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 class CartProvider with ChangeNotifier {
   // Every cardItem have unique id not the id of product
   // Map<key, value> => key will be the id of the CartItem
-  Map<String, CartItem> _cartItems = {};
+  Map<String?, CartItem> _cartItems = {};
 
   // getter to get cart items
-  Map<String, CartItem> get cartItems {
+  Map<String?, CartItem> get cartItems {
     return {..._cartItems};
   }
 
@@ -16,7 +16,7 @@ class CartProvider with ChangeNotifier {
   double get totalPriceAmount {
     var total = 0.0;
     _cartItems.forEach((key, cardItem) {
-      total += cardItem.price * cardItem.quantity;
+      total += cardItem.price! * cardItem.quantity;
     });
     return total;
   }
@@ -29,13 +29,13 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  int numberOfProductsInSingleItem(String productId) {
+  int numberOfProductsInSingleItem(String? productId) {
     var cartItem =
         _cartItems.values.firstWhere((cartItem) => cartItem.id == productId);
     return cartItem.quantity;
   }
 
-  void increaseNumberOfProductsInCartItem(String productId) {
+  void increaseNumberOfProductsInCartItem(String? productId) {
     _cartItems.update(
         productId,
         (existingCartItem) => CartItem(
@@ -48,7 +48,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void decreaseNumberOfProductsInCartItem(String productId) {
+  void decreaseNumberOfProductsInCartItem(String? productId) {
     _cartItems.update(
         productId,
         (existingCartItem) => CartItem(
@@ -64,7 +64,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void addItemToCart(
-      String productId, String title, double price, String imageUrl) {
+      String? productId, String? title, double? price, String? imageUrl) {
     // Check if cart contain product
     if (_cartItems.containsKey(productId)) {
       // Increase quantity
@@ -92,7 +92,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeItemFromCart(String itemId) {
+  void removeItemFromCart(String? itemId) {
     _cartItems.remove(itemId);
     notifyListeners();
   }

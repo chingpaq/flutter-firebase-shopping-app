@@ -81,7 +81,7 @@ class ProductsProvider with ChangeNotifier {
     const String url =
         "https://flutter-shop-7ddca.firebaseio.com/products.json";
     return http
-        .post(url,
+        .post(Uri.https(url,''),
             body: json.encode({
               'title': product.title,
               'description': product.description,
@@ -97,7 +97,7 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
-  void updateProduct(String id, ProductModelProvider product) {
+  void updateProduct(String? id, ProductModelProvider product) {
     final productIndex = _products.indexWhere((prod) => prod.id == id);
     if (productIndex >= 0) {
       _products[productIndex] = product;
@@ -105,12 +105,12 @@ class ProductsProvider with ChangeNotifier {
     }
   }
 
-  void deleteProduct(String id) {
+  void deleteProduct(String? id) {
     _products.removeWhere((prod) => prod.id == id);
     notifyListeners();
   }
 
-  ProductModelProvider findProductById(String id) {
+  ProductModelProvider findProductById(String? id) {
     return _products.firstWhere((product) => product.id == id);
   }
 

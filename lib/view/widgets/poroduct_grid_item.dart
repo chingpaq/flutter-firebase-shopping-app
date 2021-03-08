@@ -65,7 +65,7 @@ class ProductGridItem extends StatelessWidget {
                       width: 130.0,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(product.imageUrl),
+                            image: NetworkImage(product.imageUrl!),
                             fit: BoxFit.contain),
                       ),
                     ),
@@ -77,7 +77,7 @@ class ProductGridItem extends StatelessWidget {
                           color: Color(0xFFCC8053),
                           fontFamily: 'Varela',
                           fontSize: 14.0)),
-                  Text(product.title,
+                  Text(product.title!,
                       style: TextStyle(
                           color: Color(0xFF575E67),
                           fontFamily: 'Varela',
